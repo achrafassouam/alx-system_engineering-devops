@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# Display directory content 
+
 if [ -f school ]; then
   echo "school file exists"
 
