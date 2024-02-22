@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Display directory content 
+
+for file in *; do
+
+  if [[ ! $file == .* ]]; then
+    
+    name=${file#*-}
+    
+    echo "$name"
+
+  fi
+
+done
