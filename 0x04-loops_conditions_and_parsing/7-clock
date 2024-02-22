@@ -1,15 +1,18 @@
 #!/bin/bash
-# Display time from 0:01 to 12:59
+# Display hours and minutes 
 
 hours=0
-while [ $hours -le 12 ]
-do
-  minutes=1
-  while [ $minutes -le 59 ] 
-  do
-    echo "$hours:$minutes"
-    minutes=$((minutes+1))
-  done
+
+while [ $hours -le 12 ]; do
   
-  hours=$((hours+1))
+  echo "Hour: $hours"
+
+  minutes=1
+  while [ $minutes -le 59 ]; do
+    echo $minutes
+    minutes=$((minutes + 1))
+  done
+
+  hours=$((hours + 1))
+
 done
