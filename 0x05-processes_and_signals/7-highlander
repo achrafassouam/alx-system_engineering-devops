@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # Displays a message repeatedly with delay and handles SIGTERM
 
-while true; do
+while true
+do
   echo "To infinity and beyond"
   sleep 2
   trap 'echo "I am invincible"' SIGTERM
 done
-
