@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 # This script displays messages and handles signals
 
+terminator() {
+  rm /var/run/holbertonscript.pid
+  exit
+}
+
 echo $$ > /var/run/myscript.pid 
 
 trap 'rm -f /var/run/myscript.pid; exit 0' SIGTERM SIGQUIT
