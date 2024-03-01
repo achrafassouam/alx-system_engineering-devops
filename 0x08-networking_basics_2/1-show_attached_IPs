@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Displays all active IPv4 IPs on the local machine
+
+ip -4 addr show scope global | awk '{print $2}' | cut -f1 -d/
+
