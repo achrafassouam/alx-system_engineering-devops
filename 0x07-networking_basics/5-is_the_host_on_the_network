@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # Script to ping IP 5 times
 
 if [ $# -eq 0 ]; then
