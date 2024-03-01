@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# Script to ping IP 5 times
+
+if [ $# -eq 0 ]; then
+	echo "Usage: $(basename "$0") {IP_ADDRESS}"
+	exit 1
+fi
+
+ip=$1
+
+for i in {1..5}; do
+	ping -c 1 "$ip" &> /dev/null
+	if [ $? -eq 0 ]; then
+		echo "Ping $ip OK"
+	else
+		echo "Ping $ip FAILED"
+	fi
+done
