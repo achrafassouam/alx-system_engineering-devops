@@ -1,0 +1,25 @@
+Server Infrastructure Breakdown:
+--------------------------------
+
+-   **Server:** A powerful computer or software program that provides resources and services to other devices (clients) over a network. These services can include storing data, running applications, or delivering web pages.
+
+-   **Domain Name:** A human-readable address that translates to a server's IP address (a numerical address). Users can easily remember "www.foobar.com [invalid URL removed]" instead of a complex string of numbers.
+
+-   **DNS Record (www):** In "www.foobar.com [invalid URL removed]", the "www" is a specific DNS record type. It points web browsers to the server hosting the website's content.
+
+-   **Web Server:** Software on a server that delivers web content (like HTML files, images) to a user's web browser when requested. Think of it as the middleman between your request and the website's files.
+
+-   **Application Server:** Software that handles the dynamic aspects of a website, like processing user logins, generating customized content, or interacting with a database. Web server delivers static content, while application server handles interactivity.
+
+-   **Database:** A structured storage system that holds website data like user information, product details, or blog posts. The application server retrieves and manipulates this data as needed.
+
+-   **Communication Protocol:** Servers use protocols like HTTP (Hypertext Transfer Protocol) to communicate with user devices. HTTP defines how information is formatted and transmitted between the server and the user's web browser.
+
+Potential Issues:
+-----------------
+
+-   **Single Point of Failure (SPOF):** If a critical component (like the web server) fails, the entire website goes down. This is a SPOF.
+
+-   **Downtime during Maintenance:** Deploying new code or performing server maintenance often requires restarting the server, causing temporary downtime for users.
+
+-   **Scalability Limitations:** A single server may struggle to handle a surge in website traffic. This can lead to slow loading times or crashes.

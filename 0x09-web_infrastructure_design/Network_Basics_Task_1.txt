@@ -1,0 +1,41 @@
+Server Infrastructure Breakdown:
+--------------------------------
+
+**Additional Elements:**
+
+-   **2 Servers:** Increased redundancy. If one server fails, the other can handle website traffic.
+-   **Web Server (Nginx):** Efficiently serves static content (HTML, images, CSS) freeing up application server resources for more complex tasks.
+-   **Application Server:** Handles dynamic website functionalities.
+-   **Load Balancer (HAproxy):** Distributes incoming traffic across both servers (application and web) for improved performance and scalability.
+-   **Database (MySQL):** Stores website data like user accounts, product information, etc.
+
+**Load Balancing:**
+
+-   **Distribution Algorithm:** There are several algorithms used by load balancers. A common one is **Round Robin**. With Round Robin, requests are sent to each server in a sequential order, ensuring a fair distribution of workload. Other algorithms consider factors like server health or response time for more optimized traffic distribution.
+
+-   **Active-Passive vs. Active-Active:**
+
+    -   **Active-Passive:** Only one server (Primary) is actively handling requests. The other server (Secondary) acts as a hot-spare, replicating data from the Primary and ready to take over if it fails. This provides high availability but introduces a SPOF (the Primary server).
+
+    -   **Active-Active:** Both servers actively handle requests, distributing the workload. This offers better scalability and redundancy but requires more complex configuration and may introduce potential inconsistencies if data isn't synchronized perfectly.
+
+**Database Cluster (Primary-Replica):**
+
+-   **Primary Node:** The main database server that receives all write requests (data updates) and makes them permanent. It acts as the single source of truth.
+-   **Replica Node:** A copy of the Primary database. It replicates all data changes from the Primary with a slight delay. Replica nodes are used for read-only operations (retrieving data) and failover scenarios.
+
+**Differences for Application:**
+
+-   The application server primarily interacts with the **Primary Node** to ensure data consistency when writing information.
+-   It can leverage **Replica Nodes** for read-only tasks (e.g., displaying product details) to reduce load on the Primary and improve performance.
+
+Potential Issues:
+-----------------
+
+-   **SPOF:** While redundancy is improved, there are still potential SPOFs. These include:
+    -   The load balancer itself - if it fails, no traffic reaches the servers.
+    -   The database Primary node - if it fails and a replica isn't configured correctly, data loss could occur.
+-   **Security:**
+    -   No firewall: The infrastructure is vulnerable to malicious attacks that could exploit server vulnerabilities.
+    -   No HTTPS: Communication is unencrypted, making it susceptible to data interception.
+-   **Monitoring:** Without monitoring tools, it's difficult to proactively identify performance issues, server failures, or security threats.

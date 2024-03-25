@@ -1,0 +1,33 @@
+Server Infrastructure Breakdown:
+--------------------------------
+
+**Additional Elements:**
+
+-   **3 Firewalls:** One placed in front of each server (web, application, database) to filter incoming and outgoing traffic, blocking malicious activity and enhancing security.
+-   **1 SSL Certificate:** Installed on the load balancer to enable HTTPS for "www.foobar.com [invalid URL removed] [invalid URL removed]". This encrypts communication between the user's browser and the website, protecting sensitive data.
+-   **3 Monitoring Clients:** Installed on each server to collect performance and health data. This data is then sent to a central monitoring service (like Sumologic) for analysis and visualization.
+
+**Security and Monitoring:**
+
+-   **Firewalls:** Act as security gateways, inspecting all network traffic and allowing only authorized communication to pass through. They can filter based on IP addresses, port numbers, and protocols, blocking potential attacks.
+-   **HTTPS:** Encrypts communication between the user's browser and the website using Secure Sockets Layer (SSL) or its successor Transport Layer Security (TLS). This protects sensitive data like login credentials, credit card information, or any information submitted through forms.
+-   **Monitoring:** Tracks various aspects of the infrastructure, including server health, resource utilization, application performance, and error logs. It helps identify potential issues before they impact users and enables proactive maintenance.
+
+**Monitoring Data Collection:**
+
+Monitoring clients (agents) collect data from various sources on the servers, such as:
+
+-   **Operating System:** CPU usage, memory usage, disk space, network traffic.
+-   **Web Server:** Number of requests served, response times, errors encountered.
+-   **Application Server:** Application performance metrics, resource consumption, database interactions.
+-   **Database:** Database connection count, query execution times, storage usage.
+
+**Monitoring Web Server QPS (Queries Per Second):**
+
+To monitor web server QPS, the monitoring client would track the number of requests processed by the web server within a specific time frame (usually 1 second). This metric helps identify potential bottlenecks or resource limitations during high traffic periods.
+
+**Potential Issues:**
+
+-   **SSL Termination at Load Balancer:** While convenient for certificate management, terminating SSL at the load balancer can limit visibility into user behavior and prevent the application server from utilizing features like session encryption.
+-   **Single MySQL Write Server:** A single MySQL server as the primary write node creates a SPOF. If it fails and replication isn't configured correctly, data loss could occur. Consider implementing a high availability solution for the database (e.g., MySQL replication cluster).
+-   **Homogeneous Servers:** Having all servers with the same components (web server, application server, database) can be inefficient. It may be more efficient to dedicate servers for specific tasks based on resource requirements. For instance, separate web servers can handle static content, freeing up application servers for dynamic tasks.
